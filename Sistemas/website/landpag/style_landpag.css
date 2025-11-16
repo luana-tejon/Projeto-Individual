@@ -1,0 +1,1011 @@
+/*  RESET  */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ /* efeito aparecer  */
+/* 1. Crie a animação com @keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Começa totalmente transparente */
+  }
+  to {
+    opacity: 1; /* Termina totalmente visível */
+  }
+}
+
+
+/*  FUNDO  */
+
+body {
+    background-image: url(/img/fundo\ site.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow-x: hidden;
+}
+
+/*  VÍDEO DE FUNDO  */
+.bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* NAVBAR */
+
+.fundoNav{
+    width: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px); 
+    display: flex;
+    justify-content: center; 
+    align-items: center;        /* Centraliza verticalmente */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 300px;  
+    justify-content: space-between;               /* Espaço entre HOME – SOBRE – LOGO – JOGO */
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    width: 400px;
+    height: auto;
+    margin: 0;
+    filter: drop-shadow(0 0 30px #c8a2c8aa) ;
+}
+
+/* MENU */
+
+li {
+    margin: 0 30px;    /* Espaço normal, não gigante */
+    list-style: none;
+} 
+
+li a {
+    display: flex;
+    font-family: "Cinzel Decorative", serif;
+    font-size: 400%;
+    color: #D3AF37;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    justify-content: center;
+    align-items: center;
+}
+
+li a:hover { /* animação */
+    color: white;
+    box-shadow: 0 0 25% #FFDF00(218, 165, 32, 0.7);
+}
+
+/* HERO / CONTEÚDO  */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    font-size: 5.5em;
+    margin-bottom: 5%;
+    color: #DAA520;
+    font-family: "Cinzel Decorative", serif;
+    -webkit-text-stroke-width: 1px; /* Espessura da borda */
+    -webkit-text-stroke-color: rgba(188, 164, 7, 0.818); /* Cor da borda */
+    font-weight: 600%;
+    font-style: italic;
+    text-shadow: 0 0 15px #000;
+    text-align: center;
+    margin: 1% 1%;
+    animation-name: fadeIn; /* Usa a animação definida acima */
+    animation-duration: 3s; /* Duração da animação (2 segundos) */
+    animation-fill-mode: forwards; /* Mantém o estilo final após a animação */
+}
+
+p {
+    font-size: 4.2em;
+    text-shadow: 0 0 10% #000;
+    text-align: justify;
+    color: white;
+    font-family: "Alegreya Sans", sans-serif;
+    font-weight: 500%;
+    margin-bottom:8%;
+    padding: 0 5%;
+    animation-name: fadeIn; /* Usa a animação definida acima */
+    animation-duration: 2s; /* Duração da animação (2 segundos) */
+    animation-fill-mode: forwards; /* Mantém o estilo final após a animação */
+}
+
+/* BOTÃO “CADASTRAR-SE” */
+
+.botao{
+    display: flex;
+    justify-content: end;
+    margin: 50px 80px;
+    padding: 2px 1px;
+}
+
+.cadastrar-se {
+    display: flex;
+    width: 500px;
+    border-radius: 80px;
+    color: #ffdd00cf;
+    background-image: url(/img/fundo\ button.png);
+    cursor: pointer;
+    border: none;
+}
+
+
+.cadastrar-se span{
+    display: flex;
+    padding: 10% 15%;
+    font-size: 3.9em;
+    font-family: "Cinzel Decorative", serif;
+    font-weight: bold;
+    align-items: center;
+}
+
+.cadastrar-se:hover { /* animação */
+    background-color: #b8912f;
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.88);
+}
+
+
+.botao-inv{
+    justify-content: space-around;
+    margin: 80px 170px;
+    padding: 2px 1px;
+    background-image: none;
+    border: none;
+    background-color: transparent;
+}
+
+
+
+ /* carrossel  */
+.carrossel{
+    background-color: #c8a2c8cb;
+    width: 90%;
+    margin: 10% 5%;
+    border-radius: 25px;
+    padding: 2% 2%;
+    overflow-x: auto;               /* permite rolar na horizontal */
+    scroll-behavior: smooth;        /* rolagem suave */
+}
+
+
+ /* deixa fazer a scrollagem  */
+.carrossel::-webkit-scrollbar {
+    background-color: #D3AF37;
+    border-radius: 100px;
+}
+
+.fotos{
+    display: flex;
+    flex-direction: row;
+}
+
+.fotos img{
+    display: flex;
+    width: 30%;
+    height: 45%;
+    border-radius: 20%;
+    justify-content: space-between;
+    object-fit: cover;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    cursor: pointer;
+    padding: 0 2%;
+}
+
+.fotos img:hover {
+  transform: scale(1.08);
+}
+
+/* empresas  */
+
+.empresas1{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* disney  */
+.filho1{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho1 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto1 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto1::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho1:hover .filho1-container video {
+    opacity: 1;
+}
+
+.filmes1{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho1:hover .texto1 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+
+.filho1 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* dreamworks */
+.filho2{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho2 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto2 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto2::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho2:hover .filho2-container video {
+    opacity: 1;
+}
+
+.filmes2{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho2:hover .texto2 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho2 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+ 
+
+/* empresas 2  */
+
+.empresas2{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* pixar  */
+.filho3{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho3 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto3 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto3::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho3:hover .filho1-container video {
+    opacity: 1;
+}
+
+.filmes3{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho3:hover .texto3 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+
+.filho3 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* sony  */
+.filho4{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho4 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto4 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto4::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho4:hover .filho4-container video {
+    opacity: 1;
+}
+
+.filmes4{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho4:hover .texto4 {
+  opacity: 1;
+  max-height: 450px; /* altura visível */
+  overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho4 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* empresas 3 */
+
+.empresas3{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* paramount */
+.filho5{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho5 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto5 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}   
+
+.texto5::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho4:hover .filho5-container video {
+  opacity: 1;
+}
+
+.filmes5{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho5:hover .texto5 {
+  opacity: 1;
+  max-height: 450px; /* altura visível */
+  overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho5 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* 20th  */
+.filho6{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho6 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto6 {
+  opacity: 0;
+  max-height: 0;
+  overflow-y: auto;
+  font-size: 50px;
+  text-align: justify;
+  transition: all 0.6s ease;
+  margin-top: 1%;
+  margin: 2% 4%;
+  padding: 0 5%;
+}
+
+.texto6::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho6:hover .filho5-container video {
+  opacity: 1;
+}
+
+.filmes6{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho6:hover .texto6 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho6 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* empresa 4 */
+.empresas4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* cartoon */
+.filho7{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho7 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto7 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto7::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho7:hover .filho7-container video {
+    opacity: 1;
+}
+
+.filmes7{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho7:hover .texto7 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho7 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+/* universal  */
+.filho8{
+    display: flex;
+    width: 40%;
+    background-color: #c8a2c8aa;
+    border-radius: 30px;
+    margin: 2% 1%;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 1%;
+    margin-right: 1%;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.filho8 p{
+    display: flex;
+    text-align: center;
+    font-size: 500%;
+    margin: 3% 0%;
+}
+
+.texto8 {
+    opacity: 0;
+    max-height: 0;
+    overflow-y: auto;
+    font-size: 50px;
+    text-align: justify;
+    transition: all 0.6s ease;
+    margin-top: 1%;
+    margin: 2% 4%;
+    padding: 0 5%;
+}
+
+.texto8::-webkit-scrollbar {
+    background-color: #3F006D;
+    border-radius: 1%;
+}
+
+/* quando o mouse passa por cima */
+.filho8:hover .filho8-container video {
+    opacity: 1;
+}
+
+.filmes8{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.filho8:hover .texto8 {
+    opacity: 1;
+    max-height: 450px; /* altura visível */
+    overflow-y: auto;  /* ativa o scroll vertical */
+}
+
+.filho8 video{
+    display: flex;
+    width: 90%;
+    height: 50%;
+    padding: 1% 1%;
+    border-radius: 80px;
+    margin: 2% 2%;
+}
+
+
+ /* tutorial  */
+
+.posicao-tutorial{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5% 20%;
+}
+
+.tutorial {
+    display: flex;
+    width: 1000px;
+    padding: 1% 1%;
+    background-color: #3F006D;
+    height: 20%;
+    border-radius: 80px;
+    justify-content: center;
+    align-items: center;
+}
+
+.tutorial p{
+    font-size: 50px;
+    text-align: center;
+    text-align: justify;
+}
+
+ /* para alinhar as imagens  */
+ .imagens{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 1%;
+ }
+
+ /* nostalgia  */
+
+.nostalgia img{
+    display: flex;
+    height: 1000px;
+    width: 700px;
+    filter: drop-shadow(0px 0px 25px #c8a2c8aa);   
+}
+
+  /* carta */
+/* Centraliza tudo na tela */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;       /* centraliza horizontal */
+    justify-content: center;   /* centraliza vertical */
+    height: 90%;              /* ocupa 90% da altura da tela */
+}   
+
+/* TAMANHO FIXO DA CARTA */
+.carta {
+    margin: 1% 1%;
+    width: 720px;              /* largura fixa */
+    height: 1200px;             /* altura fixa */
+    position: relative;        
+    perspective: 1000px;       /* cria efeito 3D para a rotação */  
+}
+
+/* Parte que gira */
+.carta-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 3s;  /* tempo da animação de virar */
+    transform-style: preserve-3d; /* mantém os elementos 3D */
+    cursor: pointer;
+}   
+
+/* Quando a carta tiver a classe "virada", rotaciona 180 graus */
+.carta.virada .carta-inner {
+    transform: rotateY(180deg);
+}
+
+/* Frente e verso da carta compartilham o mesmo tamanho */
+.carta-frente, .carta-verso {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* impede que o verso apareça antes da hora */
+    border-radius: 20px;
+}
+
+/* Imagem da frente da carta */
+.carta-frente {
+    background-image: url('/img/costas\(carta\).png');
+    background-size: cover;
+    background-position: center;
+
+}
+ /* brilho carta frente  */
+.carta-frente:hover{
+    box-shadow: 0 0 45px #FFDF00;
+}
+
+/* Verso da carta (aparece quando vira) */
+.carta-verso {
+    background-color: #4b2a1f;
+    transform: rotateY(180deg); /* deixa o verso já de ponta-cabeça para aparecer certo */
+    display: flex;
+    font-size: 10px;
+    flex-direction: column;
+    justify-content: center;  /* centraliza vertical */
+    align-items: center;   /* centraliza horizontal */
+    text-align: justify;
+    padding: 20px;
+}
+
+ /* brilho carta verso  */
+.carta-verso:hover{
+    box-shadow: 0 0 45px #FFDF00;
+}
+
+
+  /* Botão que aparece depois da virada */
+ #botao-comecar {
+    display: none;
+    margin-top: 30px;
+    background-color: #DAA520;
+    color: #3b1b00;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 3.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+ }
+ #botao-comecar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px gold;
+ }
+
+
+/* FOOTER  */
+
+.footer {
+    background: #b694b8; /* sua cor de fundo */
+    padding: 50px 10px;
+    color: #000;
+    margin-top: 10%;
+}
+
+.linha-roxa {
+    width: 100%;
+    height: 5px;      /* espessura da linha */
+    background: #5b008c; /* cor roxa da sua imagem */
+}
+
+.creditos {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 40px;
+    opacity: 0.8;
+    color: #000;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 20px 0;
+    margin: 2% 5%;
+}
+
+/* Logo */
+.logo-area .logo {
+    width: 300px;
+    height: auto;
+    filter: drop-shadow(0px 0px 40px #ffd700);
+}
+
+/* Colaboradora */
+.colaboradora-area {
+    text-align: center;
+}
+
+.titulo-colab {
+    font-weight: bold;
+    color: #ffd700;
+    margin-bottom: 10px;
+    font-size: 35px;
+    font-family: "Cinzel Decorative", serif;
+}
+
+.colab-img {
+    width: 130px;
+    height: auto;
+    border-radius: 50%;
+    border: 8px solid #532a78;
+}
+
+/* Sitemap */
+.sitemap,.contato {
+    display: flex;
+    flex-direction: column;
+}
+
+.sitemap h4, .contato h4, .colaboradora h4 {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #3F006D;
+    font-size: 35px;
+    font-family: "Cinzel Decorative", serif;
+}
+
+.sitemap a {
+    color: white;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 35px;
+}
+
+.sitemap a:hover {
+    color: #ffd700;
+}
+
+/* Contato */
+.contato p {
+    margin: 5px 0;
+    font-size: 40px;
+    font-family: "Alegreya Sans", sans-serif;
+}
+
+

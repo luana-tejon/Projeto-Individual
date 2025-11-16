@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Linha - Desempenho Memories</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #3b265e, #1e1a24);
+      color: #e3c97a;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    h2 {
+      color: #d4a5ff;
+      margin-bottom: 20px;
+      text-shadow: 0 0 15px #8b5cf6;
+      letter-spacing: 1px;
+    }
+
+    .grafico-container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 25px 30px;
+      border-radius: 25px;
+      box-shadow: 0 0 25px rgba(212, 165, 255, 0.3);
+      width: 80%;
+      max-width: 750px;
+      transition: all 0.3s ease;
+    }
+
+    .grafico-container:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 35px rgba(227, 201, 122, 0.3);
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 420px !important;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>📈 Desempenho do Jogador - Memories</h2>
+
+  <div class="grafico-container">
+    <canvas id="graficoDesempenho"></canvas>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('graficoDesempenho');
+
+    const graficoDesempenho = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Partida 1', 'Partida 2', 'Partida 3', 'Partida 4', 'Partida 5'],
+        datasets: [
+          {
+            label: 'Pontuação',
+            data: [120, 180, 160, 200, 240],
+            borderColor: '#d4a5ff',
+            backgroundColor: 'rgba(212, 165, 255, 0.15)',
+            borderWidth: 3,
+            pointBackgroundColor: '#e3c97a',
+            pointBorderColor: '#fff',
+            pointBorderWidth: 2,
+            pointRadius: 6,
+            pointHoverRadius: 8,
+            tension: 0.4,
+            fill: true
+          },
+          {
+            label: 'Indicador de Desempenho (%)',
+            data: [70, 85, 80, 90, 95],
+            borderColor: '#e3c97a',
+            backgroundColor: 'rgba(227, 201, 122, 0.2)',
+            borderDash: [5, 5],
+            borderWidth: 2,
+            pointBackgroundColor: '#d4a5ff',
+            pointBorderColor: '#fff',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            tension: 0.4,
+            yAxisID: 'y2'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        interaction: { mode: 'index', intersect: false },
+        stacked: false,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#e3c97a',
+              font: { size: 14 }
+            }
+          },
+          tooltip: {
+            backgroundColor: '#2e2438',
+            titleColor: '#d4a5ff',
+            bodyColor: '#fff'
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#e3c97a' },
+            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+          },
+          y: {
+            type: 'linear',
+            position: 'left',
+            ticks: { color: '#d4a5ff' },
+            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+            title: {
+              display: true,
+              text: 'Pontuação',
+              color: '#d4a5ff'
+            }
+          },
+          y2: {
+            type: 'linear',
+            position: 'right',
+            ticks: { color: '#e3c97a' },
+            grid: { drawOnChartArea: false },
+            title: {
+              display: true,
+              text: 'Desempenho (%)',
+              color: '#e3c97a'
+            },
+            min: 0,
+            max: 100
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
