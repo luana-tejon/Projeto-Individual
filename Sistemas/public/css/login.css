@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../img/fundo\ site.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+
+.fundoNav {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Centraliza verticalmente */
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 160px;
+    justify-content: space-between;
+    /* Espaço entre HOME – SOBRE – LOGO – JOGO */
+}
+
+/* LOGO */
+.logo {
+    display: flex;
+    width: 250px;
+    height: auto;
+    filter: drop-shadow(0 0 30px #c8a2c8aa);
+}
+
+/* MENU */
+
+li {
+    list-style: none;
+}
+
+li a {
+    display: flex;
+    font-family: "Cinzel Decorative", serif;
+    font-size: 40px;
+    text-shadow: 0 0 15px #FFDF00;
+     letter-spacing: 1px;
+    color: #D3AF37;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s;
+    justify-content: center;
+    align-items: center;
+}
+
+li a:hover {
+    /* animação */
+    color: white;
+    box-shadow: 0px 0px 100px #ffffff(218, 165, 32, 0.7);
+}
+
+/* cadastro  */
+
+.posicao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: #892be270;
+    width: 900px;
+    height: 1050px;
+    border-radius: 42px;
+    margin-top: 10%;
+    box-shadow: 0 0 25px rgba(211, 165, 255, 0.789);
+}
+
+.text-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 13% 5%;
+}
+
+h4{
+    display: flex;
+    font-size: 50px;
+    margin-bottom: 10px;
+    justify-content: center;
+    color: #DAA520;
+    font-family: "Cinzel Decorative", serif;
+    opacity: 1px;
+    text-shadow: 0px 0px 15px #FFDF00;
+}
+
+.text-container p{
+    font-size: 2.2em;
+    font-weight: 500;
+    margin: 20px 0px;
+    color: rgb(255, 255, 255);
+    font-family: "Alegreya Sans", sans-serif;
+}
+
+
+.text-container span{
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+    font-family: "Alegreya Sans", sans-serif;
+    font-size: 45px;
+}
+
+
+.text-container span1{
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 45px;
+    color: white;
+}
+
+a{
+    text-decoration: none;
+    font-size: 45px;
+    color: #FFDF00;
+    margin: 0 20px;
+}
+
+
+/* input  */
+input{
+    width: 800px;
+    padding: 20px 5px;
+    margin: 15px 0px;
+    background: #3a0059af;
+    box-shadow: inset 0px 4px 4px rgba(4, 0, 7, 0.3);
+    border-radius: 10px;
+    font-size: 200%;
+    color: white;
+}
+
+
+/* botao  */
+
+ .butao {
+    display: flex;
+    margin-top: 30px;
+    background-image: url(../img/fundo\ button.png);
+    color: #DAA520;
+    text-align: center;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 3.5em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+ }
+ .butao:hover {
+    transform: scale(1.05);
+
+    color: white;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.88);
+ }
+
+ .butao span{
+    font-size: 60px;
+    margin: 0 175px;
+    padding: 10px 110px;
+ }
+
+ .butao{
+    font-size: 20px;
+    font-family: "Alegreya Sans", sans-serif;
+}
+
+#mensagem {
+    font-size: 40px;
+    font-family: "Alegreya Sans", sans-serif;
+}

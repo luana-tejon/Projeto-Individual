@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gráfico de Linha - Desempenho Memories</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body>
+
+  <!--nav bar-->
+  <header id="logins" id="home" class="fundoNav">
+    <nav class="navbar">
+      <li><a href="index.html#home">Voltar ao Menu</a></li>
+      <img class="logo" src="img/logo sem fundo projeto.png">
+      <li><a href="jogo.html#jogo">Jogar Novamente</a></li>
+    </nav>
+  </header>
+
+
+  <div class="kpis">
+    <div class="kpi">
+      <h2>Pontuação Máxima</h2>
+      <p style="color: #FFDF00;" id="Pmaximo"></p>
+    </div>
+    <div class="kpi">
+      <h2>Tempo de Conclusão (s)</h2>
+      <p style="color: #FFDF00;" id="Tsegundos"></p>
+    </div>
+    <div class="kpi">
+      <h2>Jogadas desta partida</h2>
+      <p style="color: red;" id="Pjogadas"></p>
+    </div>
+    <div class="kpi">
+      <h2>Rank do jogador</h2>
+      <p id="Jranks">C</p>
+    </div>
+  </div>
+
+
+  <div class="container-2i">]
+
+    <div class="boas_vindas">
+      <span>
+        Olá, <span id="Capelido" ></span><br>
+        Aqui está sua visão geral
+      </span>
+    </div>
+
+    <div class="nostalgia">
+      <img src="img/nostalgia_normal-sem_fundo.png" alt="">
+    </div>
+
+    <div class="texto">
+      <h2>Rank Critérios:</h2>
+
+      <h4 style="color: #FFDF00">Rank S</h4>
+      <p>900–1000 pontos.</p> <br>
+
+      <h4 style="color: rgb(0, 204, 255)">Rank A</h4>
+      <p> 750–900 pontos.</p><br>
+
+      <h4 style="color: rgb(4, 182, 4)">Rank B</h4>
+      <p>650–750 pontos.</p><br>
+
+      <h4 style="color: rgb(245, 15, 172)">Rank C</h4>
+      <p>400–650 pontos.</p><br>
+
+      <h4 style="color: red">Rank D</h4>
+      <p>Abaixo de 400 pontos ou tempo esgotado.</p><br>
+    </div>
+
+
+    <div class="grafico-container">
+      <canvas id="graficoDesempenho"></canvas>
+    </div>
+  </div>
+
+  <div class="container-3i" >
+    
+   <div class="conquistas">
+    <div class="titulos"><h3>Conquistas</h3></div>
+    <div class="sub-titulo" > <h4>Nome</h4> <h4>Níveis</h4></div>
+    <div class="linha"><div id="nomeC" >Primeiro Par</div><div id="nivelC">Fácil</div></div>
+    <div id="Jconquistas" ></div>
+   </div> 
+    
+  <div class="ranks-container">
+    <div class="ranks">
+      <div class="rank-1j">
+        <h4>Jogador</h4>
+        <div id="apelido">
+        </div>
+      </div>
+
+      <div class="rank-2j">
+        <h4>Ranks</h4>
+        <div id="ranks_usuario" >
+        </div>
+      </div>
+
+      <div class="rank-3j">
+        <h4>Pontuação máxima</h4>
+        <div id="pontuacao_max" >
+        </div>
+      </div>
+
+      <div class="rank-4j">
+        <h4>Tempo de jogo (s)</h4>  
+        <div id="tempo_segundos" >
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+  <script src="./js/dashboard.js"></script>
+</body>
+
+</html>

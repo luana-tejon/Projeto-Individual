@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memories of Life</title>
+  <link rel="stylesheet" href="css/jogo.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+
+  <div class="botao">
+    <button class="voltar" id="menu"><span> Voltar ao Menu </span></button>
+    <button class="voltar" id="dashboard"><span> Ver Dashboard </span></button>
+  </div>
+
+  <script>
+    const voltar = document.getElementById('menu');
+
+    voltar.addEventListener('click', () => {
+      alert('voltando ao menu...');
+      //  Aqui você pode redirecionar:
+      window.location.href = 'index.html';
+
+    });
+
+    const ir = document.getElementById('dashboard');
+
+    ir.addEventListener('click', () => {
+      //  Aqui você pode redirecionar:
+      window.location.href = 'dashboard.html';
+
+    });
+
+  </script>
+
+  </div>
+  <div class="container-jogo">
+    <div class="nostalgia">
+      <div class="container-comentario">
+        <div class="comentario-nostalgia">
+          <p>O tempo está correndo! Vire sua primeira carta e mostre que sua memória é digna do topo do ranking!</p>
+        </div>
+      </div>
+      <img src="img/nostalgia_esperando_o_tempo-sem_fundo.png">
+    </div>
+    <div class="mesa" id="jogo">
+    </div>
+    <div class="conometro-container">
+      <div class="tempo">
+        <p>Tempo</p>
+        <span id="segundo"></span>
+      </div>
+      <div class="pontos">
+        <p>Pontos</p><br>
+        <span id="pontuacao"></span>
+      </div>
+    </div>
+  </div>
+  </div>
+  <script src="./js/jogo.js"></script>
+</body>
+
+</html>
