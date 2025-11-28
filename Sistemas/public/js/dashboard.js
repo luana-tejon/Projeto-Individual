@@ -14,8 +14,6 @@ document.getElementById('Jranks').textContent = sessionStorage.RANKS_JOGO;
 document.getElementById('Capelido').textContent = sessionStorage.APELIDO_USUARIO;
 
 
-
-
 var partidas = sessionStorage.ID_PARTIDAS;
 var Pontuacao = sessionStorage.PONTOS_PARTIDAS;
 var jogadas = sessionStorage.JOGADAS_PARTIDAS;
@@ -91,9 +89,9 @@ function inserirDados() {
 inserirDados();
 
 function tops() {
-
-    fetch("/partidas/puxarRanks", {
-      method: "POST",// inserir algo ou permição total
+  
+  fetch("/partidas/puxarRanks", {
+    method: "POST",// inserir algo ou permição total
       headers: {
         "Content-Type": "application/json"
       },
@@ -112,7 +110,7 @@ function tops() {
           sessionStorage.PONTUACAOMAX_JOGADOR = json.PontuacaoMaxima;
           sessionStorage.TEMPOMIN_JOGADOR = json.TempoMinimo;
         });
-
+        
       } else {
         console.log("Houve um erro ao tentar a inserção do dados!");
         resposta.text().then(texto => {
@@ -124,145 +122,147 @@ function tops() {
     }).catch(function (erro) {
       console.log(erro);
     })
-
+    
     return false;
 
   }
+  tops();
 
-tops();
-
-
-// tabela ranks 
-function tabelaRank(){
-
-  let apelidos = sessionStorage.APELIDO_JOGADOR;
-  let melhorRanks = sessionStorage.MELHORRANK_JOGADOR;
-  let pontuacaoMax = sessionStorage.PONTUACAOMAX_JOGADOR;
-  let tempoMin = sessionStorage.TEMPOMIN_JOGADOR;
-
-  // apelido 
-  let APELIDO = [];
-  
-  let bagulho1 = '';
-  
-  for (let i = 0; i <= apelidos.length; i++) {
+  // tabela ranks 
+  function tabelaRank(){
     
-    if (i == apelidos.length) {
-      APELIDO.push(bagulho1)
-    } else if (apelidos[i] != ',') {
-      bagulho1 += apelidos[i]
-    } else {
-      APELIDO.push(bagulho1)
-      bagulho1 = '';
+    let apelidos = sessionStorage.APELIDO_JOGADOR;
+    let melhorRanks = sessionStorage.MELHORRANK_JOGADOR;
+    let pontuacaoMax = sessionStorage.PONTUACAOMAX_JOGADOR;
+    let tempoMin = sessionStorage.TEMPOMIN_JOGADOR;
+    
+    // apelido 
+    let APELIDO = [];
+    
+    let bagulho1 = '';
+    
+    for (let i = 0; i <= apelidos.length; i++) {
+      
+      if (i == apelidos.length) {
+        APELIDO.push(bagulho1)
+      } else if (apelidos[i] != ',') {
+        bagulho1 += apelidos[i]
+      } else {
+        APELIDO.push(bagulho1)
+        bagulho1 = '';
+      }
+      
     }
     
-  }
-  
-  // RANKS 
-  
-  let  MELHORRANK = [];
-  
-  let bagulho2 = '';
-  
-  for (let i = 0; i <= melhorRanks.length; i++) {
+    // RANKS 
     
-    if (i == melhorRanks.length) {
-      MELHORRANK.push(bagulho2)
-    } else if (melhorRanks[i] != ',') {
-      bagulho2 += melhorRanks[i]
-    } else {
-      MELHORRANK.push(bagulho2)
-      bagulho2 = '';
+    let  MELHORRANK = [];
+    
+    let bagulho2 = '';
+    
+    for (let i = 0; i <= melhorRanks.length; i++) {
+      
+      if (i == melhorRanks.length) {
+        MELHORRANK.push(bagulho2)
+      } else if (melhorRanks[i] != ',') {
+        bagulho2 += melhorRanks[i]
+      } else {
+        MELHORRANK.push(bagulho2)
+        bagulho2 = '';
+      }
+      
+    }
+  
+    // pontuação maxima 
+    
+    let PONTUACAOMAX = [];
+    
+    let bagulho3 = '';
+    
+    for (let i = 0; i <= pontuacaoMax.length; i++) {
+      
+      if (i == pontuacaoMax.length) {
+        PONTUACAOMAX.push(Number(bagulho3))
+      } else if (pontuacaoMax[i] != ',') {
+        bagulho3 += pontuacaoMax[i]
+      } else {
+        PONTUACAOMAX.push(Number(bagulho3))
+        bagulho3 = '';
+      }
+      
     }
     
-  }
-
-  // pontuação maxima 
-  
-  let PONTUACAOMAX = [];
-
-  let bagulho3 = '';
-  
-  for (let i = 0; i <= pontuacaoMax.length; i++) {
+    // tempo minimo 
     
-    if (i == pontuacaoMax.length) {
-      PONTUACAOMAX.push(Number(bagulho3))
-    } else if (pontuacaoMax[i] != ',') {
-      bagulho3 += pontuacaoMax[i]
-    } else {
-      PONTUACAOMAX.push(Number(bagulho3))
-      bagulho3 = '';
+    let TEMPOMIN = [];
+    
+    let bagulho4 = '';
+    
+    for (let i = 0; i <= tempoMin.length; i++) {
+      
+      if (i == tempoMin.length) {
+        TEMPOMIN.push(Number(bagulho4))
+      } else if (tempoMin[i] != ',') {
+        bagulho4 += tempoMin[i]
+      } else {
+        TEMPOMIN.push(Number(bagulho4))
+        bagulho4 = '';
+      }
+      
     }
     
-  }
-  
-  // tempo minimo 
-
-  let TEMPOMIN = [];
-  
-  let bagulho4 = '';
-  
-  for (let i = 0; i <= tempoMin.length; i++) {
+    // puxei os id das div 
     
-    if (i == tempoMin.length) {
-      TEMPOMIN.push(Number(bagulho4))
-    } else if (tempoMin[i] != ',') {
-      bagulho4 += tempoMin[i]
-    } else {
-      TEMPOMIN.push(Number(bagulho4))
-      bagulho4 = '';
+    let apelido = document.getElementById('apelido'); 
+    let ranksU = document.getElementById('ranks_usuario'); 
+    let pontuacaoM = document.getElementById('pontuacao_max'); 
+    let tempoS = document.getElementById('tempo_segundos'); 
+    
+    var msg1 = ``;
+    var msg2 = ``;
+    var msg3 = ``;
+    var msg4 = ``;
+    
+    let classe = ``;
+    // anunciei com o as classes de cada usuario e cor 
+    
+    for(let i = 0; i < APELIDO.length; i++){
+      
+      if(MELHORRANK[i] == 'S'){
+        classe = `ranksS`;
+      } else if (MELHORRANK[i] == 'A'){
+        classe = `ranksA`;
+      } else if (MELHORRANK[i] == 'B'){
+        classe = `ranksB`;
+      } else if (MELHORRANK[i] == 'C'){
+        classe = `ranksC`;
+      } else if (MELHORRANK[i] == 'D'){
+        classe = `ranksD`;
+      } 
+      
+      msg1 += `<p class="${classe}">${APELIDO[i]}</p>`;
+      msg2 += `<p class="${classe}">${MELHORRANK[i]}</p>`;
+      msg3 += `<p class="${classe}">${PONTUACAOMAX[i]}</p>`;
+      msg4 += `<p class="${classe}">${TEMPOMIN[i]}</p>`;
+      
     }
     
-  }
-
-  // puxei os id das div 
-
-  let apelido = document.getElementById('apelido'); 
-  let ranksU = document.getElementById('ranks_usuario'); 
-  let pontuacaoM = document.getElementById('pontuacao_max'); 
-  let tempoS = document.getElementById('tempo_segundos'); 
-  
-  var msg1 = ``;
-  var msg2 = ``;
-  var msg3 = ``;
-  var msg4 = ``;
-
-  let classe = ``;
-  // anunciei com o as classes de cada usuario e cor 
-  
-  for(let i = 0; i < APELIDO.length; i++){
-
-    if(MELHORRANK[i] == 'S'){
-      classe = `ranksS`;
-    } else if (MELHORRANK[i] == 'A'){
-      classe = `ranksA`;
-    } else if (MELHORRANK[i] == 'B'){
-      classe = `ranksB`;
-    } else if (MELHORRANK[i] == 'C'){
-      classe = `ranksC`;
-    } else if (MELHORRANK[i] == 'D'){
-      classe = `ranksD`;
-    } 
-
-    msg1 += `<p class="${classe}">${APELIDO[i]}</p>`;
-    msg2 += `<p class="${classe}">${MELHORRANK[i]}</p>`;
-    msg3 += `<p class="${classe}">${PONTUACAOMAX[i]}</p>`;
-    msg4 += `<p class="${classe}">${TEMPOMIN[i]}</p>`;
-
-  }
-
     apelido.innerHTML = msg1
-
+    
     ranksU.innerHTML = msg2;
-
+    
     pontuacaoM.innerHTML = msg3;
-
+    
     tempoS.innerHTML = msg4;
+    
+    
+  }
 
- 
-}
-tabelaRank();
-
+  setTimeout(() => {
+   tabelaRank();
+  }, 500);
+  
+  
 
 function carregarDadosS() {
 
@@ -314,9 +314,8 @@ function carregarDadosP() {
 }
 
 
-function desempenho(pontos, segundos) { //
+function desempenho(pontos, segundos) { // calculo do desempenho do usuario
   var desempenho = (0.8 * (pontos / 1000) + 0.2 * ((120 - segundos) / 110)) * 100
-  console.log(desempenho);
   return desempenho;
 }
 
@@ -336,6 +335,7 @@ for(var i = 0; i < dadosP.length; i++){
 
   desempenhosArry.push(desempenho(dadosP[i],dadosS[i]));
 }
+
 return desempenhosArry;
 }
 

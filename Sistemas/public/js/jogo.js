@@ -225,13 +225,18 @@ const lista = [
         img: './img/foto dos personagem/vitor.png'
     },
     {
-        name: 'panda',
-        img: './img/foto dos personagem/kung-fu-panda.png'
+        name: 'banquela',
+        img: './img/foto dos personagem/banquela.png'
     },
     {
         name: 'walle',
         img: './img/foto dos personagem/Walle-e.png'
-    } // fim 
+    },    
+    {
+        name: 'robo-selvagem',
+        img: './img/foto dos personagem/robo-selvagem.png'
+    } 
+    // fim 
 
 ]
 
@@ -330,7 +335,8 @@ for (let linha = 0; linha < 3; linha++) {
         div.addEventListener("click", () => viradaCarta(div)); // div da carta
 
         // coloca essa carta dentro da jogo
-        jogo.appendChild(div); // appendChild() para colocá-lo na posição da matriz 
+        jogo.appendChild(div); 
+        // appendChild() para colocá-lo na posição da matriz 
         // parentNode → elemento pai onde você quer inserir algo.
         // childNode → elemento (ou nó) que será adicionado.
     }
@@ -353,7 +359,7 @@ function viradaCarta(carta) {
     }
 
     // evita clicar 2x na mesma carta
-    if (carta.classList.contains("virada")) { // verifica se o elemento possui uma classe(matriz)
+    if (carta.classList.contains("virada")) { // verifica se o elemento possui uma classe(virada)
         console.log("Virada realizada");
         return;
     }
@@ -364,7 +370,6 @@ function viradaCarta(carta) {
 
     // vira a carta visualmente
     carta.classList.add("virada"); // add a class
-
     // se ainda não tem a primeira carta
     if (primeira === null) {
         primeira = carta;
@@ -372,9 +377,7 @@ function viradaCarta(carta) {
     } else {
         // se já tem a primeira, essa é a segunda
         segunda = carta;
-
         // agora verifica se formam par
-
         verificarPar();
     }
 }
@@ -394,6 +397,7 @@ function verificarPar() {
 
     jogadas++;
     console.log(`${jogadas}`)
+    
     // se forem iguais → PAR
     if (nome1 == nome2) { //ele vai adicionar se passar
 
@@ -406,12 +410,13 @@ function verificarPar() {
         // aguarda a animação da carta virar antes de finalizar o jogo
         setTimeout(() => {
             finalizadorJogo();
-            
         }, 500);  
 
         // libera o jogo para continuar
         resetarSelecao();
 
+        // altera as reacoes da nostalgia 
+        nostagiaImg(nome1,nome2);
 
     } else {
         // NÃO é par
@@ -424,10 +429,13 @@ function verificarPar() {
 
         // se quiser pontuação, chama aqui
         atualizarPontos();
-        paraTempo();
+        // altera as reacoes da nostalgia 
+        nostagiaImg(nome1,nome2)
     }
+    
 }
 
+let TempoConclusao = 0;
 function finalizadorJogo() {
     if (cont === 6) {
         alert("Jogo concluido...");
@@ -448,43 +456,42 @@ function resetarSelecao() {
 let pontos = 1000;
 
 function atualizarPontos() {
-
     pontos = pontos - 50;
-
     document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuacao no no HTML
+    
+    if(pontos === 0){
+        setTimeout(() => {
+            alert('Jogo finalizado por zerar os pontos!')
+        }, 1000)
+    }
 }
 document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuacao no no HTML
 
 // CRONÔMETRO (120 segundos)
-
 var segundos = 120;
 
 function tempo() {
-
+    
     segundos--;
-
+    
     document.getElementById('segundo').textContent = segundos;// atualiza o tempo no HTML
-
+    
     if (segundos < 0) {// se o tempo acabar
-        alert("Seu tempo acabou...");
-        window.location.href = "dashboard.html";
+        setTimeout(() => {
+            alert("Seu tempo acabou...");
+            window.location.href = "dashboard.html";
+        }, 1000)
+    }
+    
+    if(cont === 6){
+        segundos = segundos;
+        TempoConclusao = 120  - segundos;
+        clearInterval(contador) 
+        // para a setInterval 
     }
 }
-
-// parar tempo
-
-function paraTempo(){
-    segundos = document.getElementById('segundo').textContent = segundos;// atualiza o tempo no HTML
-    segundos.textContent = segundos;
-    TempoConclusao = 120  - segundos;
-}
-
-// mostra o valor inicial
-document.getElementById('segundo').textContent = segundos;
-
 // chama a função tempo a cada 1 segundo
 var contador = setInterval(tempo, 1000);
-
 
 // ranks 
 let rank = '';
@@ -506,10 +513,28 @@ function determinarRank(pontos){
     }
 }
 
+function nostagiaImg(nome1,nome2){
+ let reacoes  = document.getElementById('nostalgia');
+ let comentario = document.getElementById('texto_nostalgia');
+
+ let msg = '';
+ let text = '';
+
+  if(nome1 != nome2){
+    msg = `<img src="./img/nostalgia_triste-removebg-preview.png">`;
+    text = `<p>Quase! Sua memória pregou uma peça em você.</p>`;
+  }  else if(nome1 == nome2){
+    msg = `<img src="./img/nostalgia_feliz_por_acertar-removebg-preview.png">`;
+    text = `<p>Boa! Você encontrou uma lembrança perdida!</p>`;
+  } else {}
+
+  reacoes.innerHTML = msg;
+  comentario.innerHTML = text;
+}
+
 
 // salvar Resultado 
 function salvarResultado(){
-
     var segundoVar = TempoConclusao;
     var pontosVar = pontos;
     var jogadasVar = jogadas;
@@ -559,7 +584,6 @@ function salvarResultado(){
       });
 
     return false;
-
 }
 
 function conquistas(){

@@ -69,14 +69,14 @@ select
 FROM partidas par
 JOIN usuario u ON par.fkUsuario = u.IdUsuario
 GROUP BY u.IdUsuario, u.apelido
-ORDER BY MAX(par.pontos) DESC;  -- ordena pelo jogador com maior pontuação
+HAVING MAX(par.pontos) 
+ORDER BY MelhorRank DESC;  -- ordena pelo jogador com maior pontuação
 
 select
 	par.fkUsuario as Usuario,
     par.idPartida as Partidas,
     par.pontos AS Pontuacao,
-    par.jogadas as Jogadas,
-    (erros - 6) * 100 / 6 as Desempenho
+    par.jogadas as Jogadas
 from partidas par join usuario u
 	on par.fkUsuario = u.IdUsuario
     where fkUsuario = 1
