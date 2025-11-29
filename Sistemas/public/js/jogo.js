@@ -435,7 +435,6 @@ function verificarPar() {
     
 }
 
-let TempoConclusao = 0;
 function finalizadorJogo() {
     if (cont === 6) {
         alert("Jogo concluido...");
@@ -470,12 +469,20 @@ document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuaca
 // CRONÔMETRO (120 segundos)
 var segundos = 120;
 
+let TempoConclusao = 0;
 function tempo() {
     
     segundos--;
     
     document.getElementById('segundo').textContent = segundos;// atualiza o tempo no HTML
     
+    if(cont === 6){
+        clearInterval(contador);
+        TempoConclusao = 120  - segundos;
+        console.log(TempoConclusao);
+        // para a setInterval 
+    }
+
     if (segundos < 0) {// se o tempo acabar
         setTimeout(() => {
             alert("Seu tempo acabou...");
@@ -483,12 +490,6 @@ function tempo() {
         }, 1000)
     }
     
-    if(cont === 6){
-        segundos = segundos;
-        TempoConclusao = 120  - segundos;
-        clearInterval(contador) 
-        // para a setInterval 
-    }
 }
 // chama a função tempo a cada 1 segundo
 var contador = setInterval(tempo, 1000);
