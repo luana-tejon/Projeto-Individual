@@ -40,7 +40,6 @@ function autenticar(req, res) {
                 }
             );
     }
-
 }
 
 function cadastrar(req, res) {
@@ -59,7 +58,7 @@ function cadastrar(req, res) {
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else if (apelido == undefined) {
-        res.status(400).send("Sueu apelido está undefined!");
+        res.status(400).send("Seu apelido está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
@@ -71,11 +70,13 @@ function cadastrar(req, res) {
             ).catch(
                 function (erro) {
                     console.log(erro);
+                    console.log(`Nosso erro: ${erro.errno}`)
                     console.log(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage
                     );
-                    res.status(500).json(erro.sqlMessage);
+                    res.status(500).json(erro.errno);
+                    // res.status(500).json(erro.sqlMessage);
                 }
             );
     }

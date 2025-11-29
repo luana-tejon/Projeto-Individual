@@ -58,10 +58,7 @@ function cadastrar() {
     cardErro.style.display = "block";
   } else {
     
-    msg = `<span style="color: rgb(10, 194, 10);">Cadastro Realizado com sucesso!</span>`;
-    console.log('BBBBBBBBBBBBBBBBBBB')
-        mensagem_erro.innerHTML = msg;
-
+    
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = nome;
@@ -69,7 +66,7 @@ function cadastrar() {
     var apelidoVar = apelidos;
     var senhaVar = senha;
     var confirmacaoSenhaVar = senhaCon;
-
+    
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
       method: "POST",
@@ -85,14 +82,17 @@ function cadastrar() {
         apelidoServer: apelidoVar,
       }),
     })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-        console.log('FUNFA nao neh desgraça')
-        if (resposta.ok) {
-
-          console.log('FUNFA NÃO?')
-
-          console.log('FUNFA')
+    .then(function (resposta) {
+      console.log("resposta: ", resposta);
+      console.log('FUNFA nao neh desgraça')
+      if (resposta.ok) {
+        
+        console.log('FUNFA NÃO?')
+        msg = `<span style="color: rgb(10, 194, 10);">Cadastro Realizado com sucesso!</span>`;
+        console.log('BBBBBBBBBBBBBBBBBBB')
+        mensagem_erro.innerHTML = msg;
+        
+        console.log('FUNFA')
           setTimeout(() => {
             window.location = "login.html";
           }, 2000);
@@ -100,10 +100,14 @@ function cadastrar() {
           limparFormulario();
           finalizarAguardar();
         } else {
+          // msg = `<span style="color: red;"> Email já cadastrado!.</span>`;
+          // mensagem_erro.innerHTML = msg;
+          // cardErro.style.display = "block";
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
+        console.log(resposta);
         console.log(`#ERRO: ${resposta}`);
         // finalizarAguardar();
       });

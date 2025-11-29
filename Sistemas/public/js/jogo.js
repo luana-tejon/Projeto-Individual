@@ -452,7 +452,7 @@ function resetarSelecao() {
 }
 
 // PONTUAÇÃO
-let pontos = 1000;
+var pontos = 1000;
 
 function atualizarPontos() {
     pontos = pontos - 50;
@@ -467,9 +467,9 @@ function atualizarPontos() {
 document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuacao no no HTML
 
 // CRONÔMETRO (120 segundos)
-var segundos = 120;
+var segundos = 121;
 
-let TempoConclusao = 0;
+// let TempoConclusao = 0;
 function tempo() {
     
     segundos--;
