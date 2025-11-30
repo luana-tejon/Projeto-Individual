@@ -236,7 +236,8 @@ let dificuldade = sessionStorage.NIVEL_JOGADOR;
  }
 
 }
-conquistas();
+;
+var conquistas = setInterval(conquistas(), 1000);
 
 // tabela ranks 
 function tabelaRank() {
@@ -367,10 +368,7 @@ function tabelaRank() {
 
 }
 
-setTimeout(() => {
-  tabelaRank();
-}, 500);
-
+var ranks = setInterval(tabelaRank(), 1000);
 
 
 function carregarDadosS() {

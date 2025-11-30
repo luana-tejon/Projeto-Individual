@@ -235,6 +235,34 @@ const lista = [
     {
         name: 'robo-selvagem',
         img: './img/foto dos personagem/robo-selvagem.png'
+    },    
+    {
+        name: 'incriveis',
+        img: './img/foto dos personagem/incriveis.png'
+    },    
+    {
+        name: 'turbo',
+        img: './img/foto dos personagem/turbo.png'
+    },    
+    {
+        name: '51',
+        img: './img/foto dos personagem/planeta 51.png'
+    },
+    {
+        name: 'monstro s.a',
+        img: './img/foto dos personagem/montros s.a.png'
+    },
+    {
+        name: 'megamente',
+        img: './img/foto dos personagem/megamente.png'
+    },
+    {
+        name: 'guardioes',
+        img: './img/foto dos personagem/guardioes.png'
+    }, 
+    {
+        name: 'croods',
+        img: './img/foto dos personagem/croods.png'
     } 
     // fim 
 
@@ -467,7 +495,7 @@ document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuaca
 
 // CRONÔMETRO (120 segundos)
 var segundos = 121;
-// let TempoConclusao = 0;
+let TempoConclusao = 0;
 function tempo() {
     
     segundos--;
@@ -476,7 +504,7 @@ function tempo() {
     
     if(cont === 6){
         clearInterval(contador);
-        TempoConclusao = 120  - segundos;
+        TempoConclusao = 121  - segundos;
         conquistas(TempoConclusao);
         salvarConquistas();
         console.log(TempoConclusao);
@@ -595,11 +623,11 @@ let tempGasto = tempoConclusao;
 let ponto = pontos;
 let ranks = rank;
 
-if(pares === 1){
+if(pares == 1){
     listaConquistas.push('Primeira Par');
 }
 
-if(tempGasto === 10  && pontos === 1000){
+if(tempGasto <= 10  && pontos === 1000){
     listaConquistas.push('Sortudo');
 }
 
