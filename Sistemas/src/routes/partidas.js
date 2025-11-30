@@ -16,4 +16,12 @@ router.post("/puxarRanks", function (req, res) {
     partidasController.puxarRanks(req, res);
 });
 
+router.post("/inserirConquistas", function (req, res) {
+    partidasController.inserirConquistas(req, res);
+});
+
+router.post("/puxarConquistas", function (req, res) {
+    partidasController.puxarConquistas(req, res);
+});
+
 module.exports = router;

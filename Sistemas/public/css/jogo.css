@@ -189,9 +189,9 @@ body {
     border-radius: 10px;
 }
 
-/* frente da carta (cor sólida) */
+/* frente da carta*/
 .frente {
-    background: url("../img/card-back.png") center/cover no-repeat;
+    background-image: url("../img/card-back.png") center/cover no-repeat;
 }
 
 /* verso (imagem da carta) */

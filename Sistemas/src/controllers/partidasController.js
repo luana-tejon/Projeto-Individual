@@ -122,11 +122,11 @@ function cadastrar(req, res) {
     } else if (jogadas == undefined) {
         res.status(400).send("Sua jogadas está undefined!");
     } else if (ranks == undefined) { 
-         res.status(400).send("Seu rank está undefined!");
+        res.status(400).send("Seu rank está undefined!");
     } else if (fkUsuario == undefined) { 
-         res.status(400).send("Seu idUsuario está undefined!");
+        res.status(400).send("Seu idUsuario está undefined!");
     } else { 
-
+        
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
         partidasModel.cadastrar(pontos,segundos,jogadas,ranks,fkUsuario)
             .then(
@@ -143,11 +143,91 @@ function cadastrar(req, res) {
                     res.status(500).json(erro.sqlMessage);
                 }
             );
+        }
+}
+
+function inserirConquistas(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var conquistas = req.body.listaConquistasServer;
+    var fkUsuario = req.body.fkUsuarioServer;
+    
+    // Faça as validações dos valores
+    if (conquistas == undefined) {
+        res.status(400).send("Suas conquistas estão undefined!");
+    } else if (fkUsuario == undefined){
+        res.status(400).send("Sua fkUsuario esta undefined!");
+    } else { 
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        partidasModel.inserirConquistas(conquistas, fkUsuario)
+            .then(
+                res.json('retornou')
+                // function (resultado) {
+                //     res.json(resultado);
+                // }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao salvar a conquista! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
     }
 }
 
-module.exports = {
+function puxarConquistas(req, res) {
+
+    var fkUsuario = req.body.fkUsuarioServer;
+    
+    if (fkUsuario == undefined) {
+        res.status(400).send("Sua fkUsuario está undefined!");
+    } else {
+        partidasModel.puxarConquistas(fkUsuario)
+        .then(
+        function (resultadoAutenticar) {
+                    console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+
+                    if (resultadoAutenticar.length >= 1) {
+                        console.log(resultadoAutenticar);
+                        console.log(resultadoAutenticar);
+                        
+                        let nomeConquistaArry = [];
+                        let dificuldadeArry = [];
+                        
+                        for(var i = 0; i < resultadoAutenticar.length; i++){
+                            nomeConquistaArry.push(resultadoAutenticar[i].conquista)
+                            dificuldadeArry.push(resultadoAutenticar[i].nivel)
+                        }
+
+                          res.json({
+                              conquistas: nomeConquistaArry,
+                              nivel: dificuldadeArry,
+                          });
+                        
+                    } else if (resultadoAutenticar.length == 0) {
+                        res.status(403).send("conquistas = 0");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesma conquistas!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao puxar suas conquistas! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+        }
+ }
+
+ module.exports = {
     autenticar,
     cadastrar,
-    puxarRanks
+    puxarRanks,
+    inserirConquistas,
+    puxarConquistas
 }

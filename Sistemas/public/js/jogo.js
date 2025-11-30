@@ -439,7 +439,6 @@ function finalizadorJogo() {
     if (cont === 6) {
         alert("Jogo concluido...");
         determinarRank(pontos);
-        conquistas();
         salvarResultado();
     }
 }
@@ -468,7 +467,6 @@ document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuaca
 
 // CRONÔMETRO (120 segundos)
 var segundos = 121;
-
 // let TempoConclusao = 0;
 function tempo() {
     
@@ -479,6 +477,8 @@ function tempo() {
     if(cont === 6){
         clearInterval(contador);
         TempoConclusao = 120  - segundos;
+        conquistas(TempoConclusao);
+        salvarConquistas();
         console.log(TempoConclusao);
         // para a setInterval 
     }
@@ -488,8 +488,7 @@ function tempo() {
             alert("Seu tempo acabou...");
             window.location.href = "dashboard.html";
         }, 1000)
-    }
-    
+    }   
 }
 // chama a função tempo a cada 1 segundo
 var contador = setInterval(tempo, 1000);
@@ -542,7 +541,7 @@ function salvarResultado(){
     var ranksVar = rank;
     var fkUsuarioVar = sessionStorage.FK_USUARIO;
     // var conquistaVar = consquista; 
-
+    
     sessionStorage.SEGUNDOS_JOGO = segundoVar;
     sessionStorage.PONTOS_JOGO = pontosVar;
     sessionStorage.JOGADAS_JOGO = jogadasVar;
@@ -562,8 +561,8 @@ function salvarResultado(){
         jogadasServer: jogadasVar,
         ranksServer: ranksVar,
         fkUsuarioServer: fkUsuarioVar,
-      }),
-    })
+    }),
+})
       .then(function (resposta) {
         console.log("resposta: ", resposta);
 
@@ -578,21 +577,21 @@ function salvarResultado(){
         } else {
           throw "Houve um erro ao tentar realizar a inserção do jogo!";
         }
-      })
+    })
       .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+          console.log(`#ERRO: ${resposta}`);
         // finalizarAguardar();
       });
 
-    return false;
-}
+      return false;
+    }
 
-function conquistas(){
- 
 let listaConquistas = [];
 
+function conquistas(tempoConclusao){
+ 
 let pares = cont;
-let tempGasto = TempoConclusao;
+let tempGasto = tempoConclusao;
 let ponto = pontos;
 let ranks = rank;
 
@@ -629,5 +628,46 @@ if(pares === 6 && tempGasto < 15){
 }
 
 return listaConquistas;
+}
 
+function salvarConquistas(){
+    var listaConquistasVar = listaConquistas;
+    var fkUsuarioVar = sessionStorage.FK_USUARIO;
+
+    // var conquistaVar = consquista;
+
+    // Enviando o valor da nova input
+    fetch("/partidas/inserirConquistas", { // arquivo, função do arquivo
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json",
+        },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        listaConquistasServer: listaConquistasVar,
+        fkUsuarioServer: fkUsuarioVar,
+      }),
+    })
+      .then(
+        console.log('retornouu')
+    //     function (resposta) {
+    //     console.log("resposta: ", resposta);
+        
+    //     if (resposta.ok) {
+
+    //         console.log('Talvez inseriu')
+    //     //   limparFormulario();
+    //     //   finalizarAguardar();
+    //     } else {
+    //       throw "Houve um erro ao tentar realizar a inserção do jogo!";
+    //     }
+    //   }
+    )
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+      });
+
+    return false;
 }
