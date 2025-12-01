@@ -371,7 +371,6 @@ for (let linha = 0; linha < 3; linha++) {
 }
 
 // LÓGICA DE VIRAR E COMPARAR CARTAS
-
 // guarda a primeira e a segunda carta que o jogador vira
 let primeira = null;
 let segunda = null;
@@ -437,7 +436,7 @@ function verificarPar() {
         // aguarda a animação da carta virar antes de finalizar o jogo
         setTimeout(() => {
             finalizadorJogo();
-        }, 500);  
+        }, 1000);  
 
         // libera o jogo para continuar
         resetarSelecao();
@@ -459,7 +458,6 @@ function verificarPar() {
         // altera as reacoes da nostalgia 
         nostagiaImg(nome1,nome2)
     }
-    
 }
 
 function finalizadorJogo() {
@@ -493,24 +491,25 @@ function atualizarPontos() {
 document.getElementById('pontuacao').textContent = pontos;// atualiza a pontuacao no no HTML
 
 // CRONÔMETRO (120 segundos)
-var segundos = 121;
+var segundos = 120;
 let TempoConclusao = 0;
+
 function tempo() {
     
-    segundos--;
-    
     document.getElementById('segundo').textContent = segundos;// atualiza o tempo no HTML
+
+    segundos--;
     
     if(cont === 6){
         clearInterval(contador);
-        TempoConclusao = 121  - segundos;
+        TempoConclusao = 120  - segundos;
         conquistas(TempoConclusao);
         salvarConquistas();
         console.log(TempoConclusao);
         // para a setInterval 
     }
 
-    if (segundos < 0) {// se o tempo acabar
+    if (segundos <= 0) {// se o tempo acabar
         setTimeout(() => {
             alert("Seu tempo acabou...");
             window.location.href = "dashboard.html";
@@ -567,7 +566,7 @@ function salvarResultado(){
     var jogadasVar = jogadas;
     var ranksVar = rank;
     var fkUsuarioVar = sessionStorage.FK_USUARIO;
-    // var conquistaVar = consquista; 
+    
     
     sessionStorage.SEGUNDOS_JOGO = segundoVar;
     sessionStorage.PONTOS_JOGO = pontosVar;

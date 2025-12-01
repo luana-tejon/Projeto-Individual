@@ -21,15 +21,19 @@ function autenticar(fkUsuario) {
 function puxarRanks() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ")
     var instrucaoSql = `
-                    select
-                     u.apelido AS Jogador,
-                     MIN(par.ranks) AS MelhorRank,
-                     MAX(par.pontos) AS PontuacaoMaxima,
-                     MIN(par.segundos) AS TempoMinimo
-                     FROM partidas par
-                     JOIN usuario u ON par.fkUsuario = u.IdUsuario
-                     GROUP BY u.IdUsuario, u.apelido
-                     ORDER BY MAX(par.pontos) DESC; `;
+                    SELECT
+                        u.apelido AS Jogador,
+                        par.ranks AS MelhorRank,
+                        par.pontos AS PontuacaoMaxima,
+                        par.segundos AS TempoMinimo
+                    FROM partidas par
+                    JOIN usuario u ON par.fkUsuario = u.IdUsuario
+                    WHERE par.pontos = (
+                        SELECT MAX(p2.pontos)
+                        FROM partidas p2
+                        WHERE p2.fkUsuario = par.fkUsuario
+                    )
+                    ORDER BY PontuacaoMaxima DESC;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -91,7 +95,7 @@ function cadastrar(pontos, segundos, jogadas, ranks, fkUsuario) {
 function puxarConquistas(fkUsuario) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function puxarConquistas(): ")
     var instrucaoSql = `
-                    select
+                    select distinct
                     p.fkUsuario as Usuario,
                     c.nome as conquista,
                     c.dificuldade as nivel

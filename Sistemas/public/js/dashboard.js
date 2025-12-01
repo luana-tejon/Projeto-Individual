@@ -173,8 +173,8 @@ tabelaConquistas();
 
 function conquistas(){
 
-let nome = sessionStorage.CONQUISTAS_JOGADOR;
-let dificuldade = sessionStorage.NIVEL_JOGADOR;
+  let nome = sessionStorage.CONQUISTAS_JOGADOR;
+  let dificuldade = sessionStorage.NIVEL_JOGADOR;
 
   // conquistas 
   let CONQUISTAS = [];
@@ -219,25 +219,27 @@ let dificuldade = sessionStorage.NIVEL_JOGADOR;
  let usoConquista = [];
  let usoDificuldade = [];
 
+  let msgs1 = ``;
+  let msgs2 = ``;
 
  for(var i = 0; i < CONQUISTAS.length; i++){
   
   if(!usoConquista.includes(CONQUISTAS[i])){
 
-      usoConquista.push(CONQUISTAS[i])
-      usoDificuldade.push(DIFICULDADE[i])
+      usoConquista.push(CONQUISTAS[i]);
+      usoDificuldade.push(DIFICULDADE[i]);
 
       let ultimo = usoConquista.length - 1 // O novo item foi inserido no final do array, mas o índice dele é usoConquista.length - 1, NÃO i (pois sempre ira puxar no final mesmo não tendo nada)
 
-      conquistas.innerHTML += `<p>${usoConquista[ultimo]}</p><br>`
-      nivel.innerHTML += `<p>${usoDificuldade[ultimo]}</p><br>`;
-
-   }
- }
-
-}
-;
+      msgs1 += `<p>${usoConquista[ultimo]}</p><br>`;
+      msgs2 += `<p>${usoDificuldade[ultimo]}</p><br>`;
+    }
+  }  
+    conquistas.innerHTML = msgs1;
+    nivel.innerHTML = msgs2;
+};
 var conquistas = setInterval(conquistas, 1000);
+
 
 // tabela ranks 
 function tabelaRank() {
@@ -571,5 +573,4 @@ function grafico() {
       }
     }
   });
-
 }
