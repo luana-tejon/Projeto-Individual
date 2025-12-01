@@ -401,7 +401,6 @@ function viradaCarta(carta) {
     // se ainda não tem a primeira carta
     if (primeira === null) {
         primeira = carta;
-
     } else {
         // se já tem a primeira, essa é a segunda
         segunda = carta;
@@ -612,7 +611,8 @@ function salvarResultado(){
       });
 
       return false;
-    }
+}
+
 
 let listaConquistas = [];
 
@@ -651,7 +651,7 @@ if(ranks === 'S'){
     listaConquistas.push('Rank S pelo primeira vez!');
 }
 
-if(pares === 6 && tempGasto < 15){
+if(pares === 6 && tempGasto <= 15){
     listaConquistas.push('Memória de Ouro');
 }
 
