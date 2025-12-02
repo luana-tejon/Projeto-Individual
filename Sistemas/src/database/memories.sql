@@ -1,6 +1,5 @@
 use memories;
 
-
 CREATE TABLE usuario (
 IdUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR (45) NOT NULL,
@@ -31,7 +30,7 @@ dificuldade VARCHAR(50)
 );
 
 CREATE TABLE premios (
-idPremios INT,
+idPremios INT auto_increment,
 fkConquistas INT,
 fkUsuario INT,
 constraint fkConquistas_premios
@@ -45,15 +44,20 @@ constraint pkComposta_premio
 dtPremios DATETIME default current_timestamp
 );
 
-
-
 select * from partidas;
 SELECT * FROM usuario;
 SELECT * FROM conquistas;
+SELECT * FROM premios;
+
+TRUNCATE TABLE premios;
+truncate table conquistas;
+truncate partidas;
+truncate usuario;
 
 drop table partidas;
 drop table usuario;
 drop table conquistas;
+drop table premios;
 
 INSERT INTO conquistas (nome, descricao, dificuldade) VALUES
 ('Primeiro Par', 'Encontrou seu primeiro par de cartas.', 'Fácil'),
@@ -63,12 +67,9 @@ INSERT INTO conquistas (nome, descricao, dificuldade) VALUES
 ('Sem Pressa', 'Concluiu a partida gastando mais de 100 segundos.', 'Fácil'),
 ('Mestre dos Desenhos', 'Completou a partida com pontuação máxima (1000 pontos).', 'Muito Difícil'),
 ('Rank S', 'Alcançou rank S pela primeira vez.', 'Difícil'),
-('Consistente', 'Completou 5 partidas consecutivas sem perder mais de 200 pontos por jogo.', 'Médio'),
 ('Memória de Ouro', 'Concluiu a partida sem errar nenhuma jogada e dentro de 10 segundos.', 'Extremamente Difícil');
 
-truncate table conquistas;
-truncate partidas;
-
+-- select para selecionar o maximo e o minimo dos jogadores e ir alterando conforme o maior foi atualizado
 SELECT
     u.apelido AS Jogador,
     MIN(par.ranks) AS MelhorRank,  -- S é melhor, depois A, B, C...
@@ -78,16 +79,33 @@ FROM partidas par
 JOIN usuario u ON par.fkUsuario = u.IdUsuario
 GROUP BY u.IdUsuario, u.apelido
 ORDER BY MAX(par.pontos) DESC;  -- ordena pelo jogador com maior pontuação
--- SELECT JOAO
--- select para selecionar o maximo e o minimo dos jogadores e ir alterando conforme o maior foi atualizado
-SELECT u.apelido AS Jogador, 
-MIN(par.ranks) AS MelhorRank, 
-MAX(par.pontos) AS PontuacaoMaxima,
-MIN(par.segundos) AS TempoMinimo
-	FROM partidas par
-		JOIN usuario u ON par.fkUsuario = u.idUsuario  
-        GROUP BY u.IdUsuario, u.apelido 
-        ORDER BY MAX(par.pontos) DESC;
+
+
+SELECT
+    u.apelido AS Jogador,
+    par.ranks AS MelhorRank,  -- S é melhor, depois A, B, C...
+    MAX(par.pontos) AS PontuacaoMaxima,
+    par.segundos AS TempoMinimo
+FROM partidas par
+JOIN usuario u ON par.fkUsuario = u.IdUsuario
+GROUP BY u.IdUsuario, u.apelido, par.segundos, par.ranks,par.pontos
+HAVING par.pontos = MAX(par.pontos)
+ORDER BY MAX(par.pontos) DESC ;  -- ordena pelo jogador com maior pontuação
+	
+SELECT
+    u.apelido AS Jogador,
+    par.ranks AS MelhorRank,
+    par.pontos AS PontuacaoMaxima,
+    par.segundos AS TempoMinimo
+FROM partidas par
+JOIN usuario u ON par.fkUsuario = u.IdUsuario
+WHERE par.pontos = (
+    SELECT MAX(p2.pontos)
+    FROM partidas p2
+    WHERE p2.fkUsuario = par.fkUsuario
+)
+ORDER BY PontuacaoMaxima DESC;
+
 
  -- grafico
 select
@@ -100,3 +118,21 @@ from partidas par join usuario u
 	on par.fkUsuario = u.IdUsuario
     where fkUsuario = 1;
 
+-- tabela conquistas
+select
+	p.fkUsuario as Usuario,
+	c.nome as conquista,
+    c.dificuldade as nivel
+    from premios p join conquistas c
+    on c.idConquistas = p.fkConquistas join
+    usuario u on  u.idUsuario = p.fkUsuario;
+    
+select distinct
+        p.fkUsuario as Usuario,
+        c.nome  as conquista,
+        c.dificuldade as nivel
+       from premios p join conquistas c
+	  on c.idConquistas = p.fkConquistas join
+           usuario u on u.idUsuario = p.fkUsuario
+                where fkUsuario = 5;
+    

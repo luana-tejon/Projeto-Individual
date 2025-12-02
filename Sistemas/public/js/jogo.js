@@ -246,11 +246,11 @@ const lista = [
     },    
     {
         name: '51',
-        img: './img/foto dos personagem/planeta 51.png'
+        img: './img/foto dos personagem/planeta_51.png'
     },
     {
         name: 'monstro s.a',
-        img: './img/foto dos personagem/montros s.a.png'
+        img: './img/foto dos personagem/montros_s.a.png'
     },
     {
         name: 'megamente',
@@ -422,7 +422,7 @@ function verificarPar() {
     let nome2 = segunda.dataset.name; //
 
     jogadas++;
-    console.log(`${jogadas}`)
+    console.log(`${jogadas}`);
     
     // se forem iguais → PAR
     if (nome1 == nome2) { //ele vai adicionar se passar
@@ -435,11 +435,10 @@ function verificarPar() {
 
         // aguarda a animação da carta virar antes de finalizar o jogo
         setTimeout(() => {
-            finalizadorJogo();
+            finalizadorJogo(); 
+             // libera o jogo para continuar
+          resetarSelecao();
         }, 1000);  
-
-        // libera o jogo para continuar
-        resetarSelecao();
 
         // altera as reacoes da nostalgia 
         nostagiaImg(nome1,nome2);
@@ -462,7 +461,6 @@ function verificarPar() {
 
 function finalizadorJogo() {
     if (cont === 6) {
-        alert("Jogo concluido...");
         determinarRank(pontos);
         salvarResultado();
     }
@@ -496,11 +494,13 @@ let TempoConclusao = 0;
 
 function tempo() {
     
+    var pares = cont;
+
     document.getElementById('segundo').textContent = segundos;// atualiza o tempo no HTML
 
     segundos--;
     
-    if(cont === 6){
+    if(pares === 6){
         clearInterval(contador);
         TempoConclusao = 120  - segundos;
         conquistas(TempoConclusao);
@@ -595,6 +595,7 @@ function salvarResultado(){
         if (resposta.ok) {
 
           setTimeout(() => {
+            alert(`Jogo finalizado...`)
             window.location = "dashboard.html";
           }, 500);
 
@@ -678,18 +679,6 @@ function salvarConquistas(){
     })
       .then(
         console.log('retornouu')
-    //     function (resposta) {
-    //     console.log("resposta: ", resposta);
-        
-    //     if (resposta.ok) {
-
-    //         console.log('Talvez inseriu')
-    //     //   limparFormulario();
-    //     //   finalizarAguardar();
-    //     } else {
-    //       throw "Houve um erro ao tentar realizar a inserção do jogo!";
-    //     }
-    //   }
     )
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
