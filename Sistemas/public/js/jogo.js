@@ -418,7 +418,7 @@ function verificarPar() {
     podeClicar = false;
 
     // pega os nomes das cartas (pelo dataset)
-    let nome1 = primeira.dataset.name; // verefica pelo nome dos arrays
+    let nome1 = primeira.dataset.name; // verefica pelo nome do json
     let nome2 = segunda.dataset.name; //
 
     jogadas++;
