@@ -126,7 +126,7 @@ Arraste o arquivo para o navegador
 
 Não é necessário instalar nada — o jogo roda direto no navegador.
 
-🖼️ Exemplos de Personagens Presentes
+## 🖼️ Exemplos de Personagens Presentes
 
 (Adicione imagens depois, se quiser)
 
@@ -144,7 +144,7 @@ Filmes da 20th Century Studios
 
 Desenhos inesquecíveis do Cartoon Network
 
-📈 Possíveis Expansões Futuras
+## 📈 Possíveis Expansões Futuras
 
 Sistema de pontuação
 
